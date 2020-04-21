@@ -1,0 +1,97 @@
+<!doctype html>
+<head>
+<meta charset="UTF-8">
+<title>Pséfstis</title>
+<style>
+body {
+	background-color:  #C0C0C0;
+	color:	#303030;
+	font-size: 16px;
+	margin-left: auto; 
+	margin-right: auto;
+	width: 40%;
+}
+
+img {
+	max-width: 80%;
+	height: auto;
+	border-radius: 50px;
+}
+
+/*
+#header {
+	position: fixed;
+	top: 2em;
+}
+*/
+
+#about {
+	position: fixed;
+	top: 2em;
+	left: 2em;
+	width: 30%;
+}
+
+#form {
+	position: fixed;
+	top: 2.5em;
+	right: 1.5em;
+}
+
+#answer {
+	width: 40%;
+	position: fixed;
+	font-family: monospace, sans-serif;
+	margin-left: auto; 
+	margin-right: auto;
+	bottom: 2.5em;
+}
+</style>
+</head>
+<body onload="init()">
+<div id="about">
+<img src="aftm.jpg" alt="Automatic Fortune Teller Machine" >
+<p>
+Pséfstis is a free-lance fortune teller living in a small village in Pensylvania in a small cottage with her 2 flatmates (cats).
+</p>
+</div>
+<div id="form">
+<div id="header">
+<center><h1> Ask Pséfstis </h1></center>
+</div>
+<textarea id="question" rows="4" cols="50">
+</textarea> <br><br>
+<center><button onClick="ask()">> Ask <</button></center>
+</div>
+<div id="answer">
+</div>
+<script>
+function init() {
+	var url_tmp = location.href;
+	var url = new URL(url_tmp);
+	var evil = url.searchParams.get("evil");
+	if (evil == "true") {
+		console.log("You naughty internet user... You shouldn't use Pséfstis for evil.");
+	} else if (evil == "false") {
+		console.log("Where's the fun? Everyone's a little bit evil.");
+	} else {
+		console.log("I honestly can't tell your intentions.")
+	}
+}
+
+function ask() {
+	var answers = ["It is certain", "It is decidedly so", "Yes - definitely", "You may rely on it", "As I see it, yes", "Most likely", "Outlook good", "Yes", "Signs point to yes", "Reply hazy, try again", "Ask again later", "Better not tell you now", "Cannot predict now", "Concentrate and ask again", "Don't count on it", "My reply is no", "My sources say no", "Outlook not so good", "Very doubtful", "Sure Jan", "Bitch please", "Computer says no", "Internet connection lousy, ask again", "What am I, an oracle? Oh, right... yeah. Well, ask again", "You know, I've been answering questions all day. What about tipping me first before getting your answer?"];
+	var i = Math.floor(Math.random() * answers.length); 
+	var question = document.getElementById("question");
+	var answer = document.getElementById("answer");
+	if (question.value === "") {
+		answer.innerHTML = "<p>I can't help until you ask the question.</p><p>To know what you want to ask, first you must clear your head.<br><i>That shouldn't be <b>too</b> hard for you.</i></p>"	
+	} else {
+		answer.innerHTML = "<i>" + answers[i] + "</i>";
+
+	}
+	question.value = "";
+}
+</script>
+</body>
+</html>
