@@ -1,69 +1,64 @@
 <!doctype html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Pséfstis</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <style>
+
 body {
+	color:  #303030;
 	background-color:  #C0C0C0;
-	color:	#303030;
-	font-size: 16px;
-	margin-left: auto; 
-	margin-right: auto;
-	width: 40%;
+	font-family: "serif";
 }
 
-img {
-	max-width: 80%;
-	height: auto;
-	border-radius: 50px;
+@media (min-width: 576px) {
+	#about {
+		display: hidden;
+	}
 }
 
-/*
-#header {
-	position: fixed;
-	top: 2em;
-}
-*/
-
-#about {
-	position: fixed;
-	top: 2em;
-	left: 2em;
-	width: 30%;
-}
-
-#form {
-	position: fixed;
-	top: 2.5em;
-	right: 1.5em;
+@media (min-width: 992px) {
+	#about {
+		visible: visible;
+	}
 }
 
 #answer {
-	width: 40%;
-	position: fixed;
-	font-family: monospace, sans-serif;
-	margin-left: auto; 
-	margin-right: auto;
-	bottom: 2.5em;
+	font-family: "Lucida Console", "monospace", "sans-serif";
 }
 </style>
 </head>
 <body onload="init()">
-<div id="about">
-<img src="aftm.jpg" alt="Automatic Fortune Teller Machine" >
+<div class="container-fluid">
+<div id="github" class="alert alert-info alert-dismissible fade show" role="alert">
+Help with the project -> visit github page <a href='https://github.com/captainkuromaru/aftm' onclick='hideinfo()'>AFTM</a>
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+
+<div class="row">
+<div id="about" class="d-none d-lg-block col-sm-4 mt-auto">
+<img class="rounded mx-auto d-block" src="aftm.jpg" alt="Automatic Fortune Teller Machine" >
 <p>
-Pséfstis is a free-lance fortune teller living in a small village in Pensylvania in a small cottage with her 2 flatmates (cats).
+Pséfstis is a freelance fortune teller living in a small village in Pensylvania in a small cottage with her 2 <abbr title="cats">flatmates</abbr>.
 </p>
 </div>
-<div id="form">
-<div id="header">
+<div id="form" class="col-sm-8 mt-auto">
+<div class="mx-auto" id="header">
 <center><h1> Ask Pséfstis </h1></center>
 </div>
-<textarea id="question" rows="4" cols="50">
-</textarea> <br><br>
+<center><textarea id="question" rows="4" cols="25" style="background-color:  #C0C0C0; resize: none; border: dashed">
+</textarea></center> <br><br>
 <center><button onClick="ask()">> Ask <</button></center>
 </div>
-<div id="answer">
+</div>
+<div class="row">
+<div id="answer" class="col-sm-8 d-lg-block ml-md-auto">
+</div>
+</div>
 </div>
 <script>
 function init() {
@@ -81,17 +76,23 @@ function init() {
 
 function ask() {
 	var answers = ["It is certain", "It is decidedly so", "Yes - definitely", "You may rely on it", "As I see it, yes", "Most likely", "Outlook good", "Yes", "Signs point to yes", "Reply hazy, try again", "Ask again later", "Better not tell you now", "Cannot predict now", "Concentrate and ask again", "Don't count on it", "My reply is no", "My sources say no", "Outlook not so good", "Very doubtful", "Sure Jan", "Bitch please", "Computer says no", "Internet connection lousy, ask again", "What am I, an oracle? Oh, right... yeah. Well, ask again", "You know, I've been answering questions all day. What about tipping me first before getting your answer?"];
-	var i = Math.floor(Math.random() * answers.length); 
+	var i = Math.floor(Math.random() * answers.length);
 	var question = document.getElementById("question");
 	var answer = document.getElementById("answer");
 	if (question.value === "") {
-		answer.innerHTML = "<p>I can't help until you ask the question.</p><p>To know what you want to ask, first you must clear your head.<br><i>That shouldn't be <b>too</b> hard for you.</i></p>"	
+		answer.innerHTML = "<p>I can't help until you ask the question.</p><p>To know what you want to ask, first you must clear your head.<br><small class='text-muted'>That shouldn't be <b>too</b> hard for you.</small></p>";
 	} else {
-		answer.innerHTML = "<i>" + answers[i] + "</i>";
+		answer.innerHTML = "<p class='lead'><i>" + answers[i] + ".</i></p>";
 
 	}
 	question.value = "";
+
+	// document.getElementById("github").innerHTML = "Help with the project -> visit github page <a href='https://github.com/captainkuromaru/aftm' onclick='hideinfo()'>AFTM</a>";
 }
 </script>
+<!--  i can't believe i am one of those people now: -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 </html>
